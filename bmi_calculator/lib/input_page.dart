@@ -18,8 +18,7 @@ class _InputPageState extends State<InputPage> {
   GenderEnum? selectedGender;
   int height = 180;
   int weight = 60;
-    int age = 18;
-
+  int age = 18;
 
   @override
   Widget build(BuildContext context) {
@@ -133,7 +132,7 @@ class _InputPageState extends State<InputPage> {
                           icon: FontAwesomeIcons.plus,
                           onPressed: () => {
                             setState(() {
-                             weight++;
+                              weight++;
                             })
                           },
                         )
@@ -174,7 +173,7 @@ class _InputPageState extends State<InputPage> {
                           icon: FontAwesomeIcons.plus,
                           onPressed: () => {
                             setState(() {
-                             age++;
+                              age++;
                             })
                           },
                         )
@@ -184,11 +183,17 @@ class _InputPageState extends State<InputPage> {
                 ),
               )),
             ])),
-            Container(
-              color: kBottomContainerColor,
-              margin: const EdgeInsets.only(top: 10.0),
-              width: double.infinity,
-              height: kBottomContainerHeight,
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/results');
+              },
+              child: Container(
+                color: kBottomContainerColor,
+                margin: const EdgeInsets.only(top: 10.0),
+                width: double.infinity,
+                height: kBottomContainerHeight,
+                child: const Text('CALCULATE'),
+              ),
             )
           ],
         ));
@@ -205,12 +210,12 @@ class RoundIconButton extends StatelessWidget {
     return RawMaterialButton(
       elevation: 0.0,
       disabledElevation: 6.0,
-      constraints: BoxConstraints.tightFor(
+      constraints: const BoxConstraints.tightFor(
         width: 56.0,
         height: 56.0,
       ),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-      fillColor: Color(0xFF4C4F5E),
+      fillColor: const Color(0xFF4C4F5E),
       onPressed: onPressed,
       child: Icon(icon),
     );
