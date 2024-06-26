@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/domain/model/bmi.dart';
 import 'package:bmi_calculator/domain/model/gender_enum.dart';
 import 'package:bmi_calculator/reusable_card.dart';
 import 'package:bmi_calculator/util/constants.dart';
@@ -7,6 +8,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'card_content.dart';
 import 'widget/bottom_button.dart';
 import 'widget/rounded_icon_button.dart';
+import 'domain/calculate_bmi_usecase.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -188,7 +190,16 @@ class _InputPageState extends State<InputPage> {
             BottomButton(
                 buttonTitle: 'CALCULATE',
                 onTap: () {
-                  Navigator.pushNamed(context, '/results');
+                  CalculatorBmiUseCase calculatorBmiUseCase =
+                      CalculatorBmiUseCase(height: height, weight: weight);
+
+                  Navigator.pushNamed(context, '/results',
+                      arguments: Bmi(
+                        bmi: calculatorBmiUseCase.calculateBMI(),
+                        resultText: calculatorBmiUseCase.getResult(),
+                        interpretation:
+                            calculatorBmiUseCase.getInterpretation(),
+                      ));
                 }),
           ],
         ));
