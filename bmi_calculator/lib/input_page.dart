@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'card_content.dart';
+import 'widget/bottom_button.dart';
+import 'widget/rounded_icon_button.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -183,41 +185,12 @@ class _InputPageState extends State<InputPage> {
                 ),
               )),
             ])),
-            GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, '/results');
-              },
-              child: Container(
-                color: kBottomContainerColor,
-                margin: const EdgeInsets.only(top: 10.0),
-                width: double.infinity,
-                height: kBottomContainerHeight,
-                child: const Text('CALCULATE'),
-              ),
-            )
+            BottomButton(
+                buttonTitle: 'CALCULATE',
+                onTap: () {
+                  Navigator.pushNamed(context, '/results');
+                }),
           ],
         ));
-  }
-}
-
-class RoundIconButton extends StatelessWidget {
-  const RoundIconButton({super.key, required this.onPressed, this.icon});
-  final void Function()? onPressed;
-  final IconData? icon;
-
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      elevation: 0.0,
-      disabledElevation: 6.0,
-      constraints: const BoxConstraints.tightFor(
-        width: 56.0,
-        height: 56.0,
-      ),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-      fillColor: const Color(0xFF4C4F5E),
-      onPressed: onPressed,
-      child: Icon(icon),
-    );
   }
 }
