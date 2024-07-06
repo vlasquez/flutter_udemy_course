@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import '/services/location.dart';
 import 'package:http/http.dart' as http;
+import 'package:json_annotation/json_annotation.dart';
+import 'package:clima/domain/model/weather_response.dart';
 
 class LoadingScreen extends StatefulWidget {
   @override
@@ -18,7 +22,6 @@ class _LoadingScreenState extends State<LoadingScreen> {
   void getLocation() async {
     var location = Location();
     await location.getCurrentLocation();
-    print('latitude: ${location.latitude} longitude: ${location.longitude}');
   }
 
   void getData() async {
@@ -32,7 +35,11 @@ class _LoadingScreenState extends State<LoadingScreen> {
     var response =
         await http.get(url, headers: {'name': 'doodle', 'color': 'blue'});
 
-    print(response.body);
+    var weatherResponse = WeatherResponse.fromJson(
+        jsonDecode(response.body) as Map<String, dynamic>);
+
+    print('name: ${weatherResponse.name}'
+        'Latitude: ${weatherResponse.coordinates.latitude} Longitude: ${weatherResponse.coordinates.longitude}');
   }
 
   @override
