@@ -11,6 +11,8 @@ WeatherResponse _$WeatherResponseFromJson(Map<String, dynamic> json) =>
       coordinates: Coordinates.fromJson(json['coord'] as Map<String, dynamic>),
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
+      weatherMainData:
+          WeatherMainData.fromJson(json['main'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$WeatherResponseToJson(WeatherResponse instance) =>
@@ -18,4 +20,5 @@ Map<String, dynamic> _$WeatherResponseToJson(WeatherResponse instance) =>
       'coord': instance.coordinates,
       'id': instance.id,
       'name': instance.name,
+      'main': instance.weatherMainData,
     };
