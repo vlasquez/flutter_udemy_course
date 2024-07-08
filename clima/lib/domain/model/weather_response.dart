@@ -1,3 +1,4 @@
+import 'package:clima/domain/model/weather.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'coordinates.dart';
 import 'weather_main_data.dart';
@@ -10,7 +11,8 @@ class WeatherResponse {
       {required this.coordinates,
       required this.id,
       required this.name,
-      required this.weatherMainData});
+      required this.weatherMainData,
+      required this.weather});
 
   @JsonKey(name: "coord")
   Coordinates coordinates;
@@ -23,6 +25,9 @@ class WeatherResponse {
 
   @JsonKey(name: "main")
   WeatherMainData weatherMainData;
+
+  @JsonKey(name: "weather")
+  List<Weather> weather;
 
   factory WeatherResponse.fromJson(Map<String, dynamic> json) =>
       _$WeatherResponseFromJson(json);

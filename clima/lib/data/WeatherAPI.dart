@@ -11,7 +11,8 @@ class WeatherAPI {
       'lat': latitude.toString(),
       'lon': longitude.toString(),
       'exclude': 'hourly,daily',
-      'appid': openWeatherApiKey
+      'appid': openWeatherApiKey,
+      'units': 'metric',
     });
 
     var response =

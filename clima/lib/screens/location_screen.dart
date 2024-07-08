@@ -1,3 +1,5 @@
+import 'package:clima/domain/model/weather_response.dart';
+import 'package:clima/services/weather.dart';
 import 'package:flutter/material.dart';
 import 'package:clima/util/constants.dart';
 
@@ -9,6 +11,8 @@ class LocationScreen extends StatefulWidget {
 class _LocationScreenState extends State<LocationScreen> {
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)!.settings.arguments as WeatherResponse;
+    WeatherModel weatherModel = WeatherModel();
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -45,24 +49,24 @@ class _LocationScreenState extends State<LocationScreen> {
                 ],
               ),
               Padding(
-                padding: EdgeInsets.only(left: 15.0),
+                padding: const EdgeInsets.only(left: 15.0),
                 child: Row(
                   children: <Widget>[
                     Text(
-                      '32°',
+                      '${args.weatherMainData.temp}°',
                       style: kTempTextStyle,
                     ),
                     Text(
-                      '☀️',
+                      weatherModel.getWeatherIcon(args.weather[0].id),
                       style: kConditionTextStyle,
                     ),
                   ],
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(right: 15.0),
+                padding: const EdgeInsets.only(right: 15.0),
                 child: Text(
-                  "It's 🍦 time in San Francisco!",
+                  "${weatherModel.getMessage(args.weatherMainData.temp.toInt())} in ${args.name}",
                   textAlign: TextAlign.right,
                   style: kMessageTextStyle,
                 ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import '/services/location.dart';
-import 'package:clima/data/WeatherAPI.dart';
 import 'package:clima/domain/usecase/get_weather_by_location.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class LoadingScreen extends StatefulWidget {
   @override
@@ -21,11 +20,19 @@ class _LoadingScreenState extends State<LoadingScreen> {
   void getWeatherByLocation() async {
     GetWeatherByLocation getWeatherByLocation = GetWeatherByLocation();
     var weatherResponse = await getWeatherByLocation.getWeatherByLocation();
-    print(weatherResponse.coordinates.longitude);
+
+    Navigator.pushNamed(context, '/weather', arguments: weatherResponse);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return const Scaffold(
+      body: const Center(
+        child: SpinKitDoubleBounce(
+          color: Colors.white,
+          size: 100.0,
+        ),
+      ),
+    );
   }
 }
