@@ -14,6 +14,6 @@ class GetWeatherByLocation {
     longitude = location.longitude?.toDouble() ?? 0.0;
 
     WeatherAPI weatherAPI = WeatherAPI();
-    return weatherAPI.getWeather(latitude, longitude);
+    return weatherAPI.getWeatherByLocation(latitude, longitude);
   }
 }
