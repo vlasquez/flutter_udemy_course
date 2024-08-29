@@ -5,7 +5,7 @@ import 'dart:convert';
 
 class CoinAPI {
   static const String _url = 'rest.coinapi.io';
-  static const String apiKey = 'FB70077F-56E2-4379-9BFE-FB193AC54BEB';
+  static const String apiKey = 'API_KEY';
 
   Future<AssertRateResponse> getCoin(String from, String to) async {
     var url = Uri.https(_url, '/v1/exchangerate/$from/$to', {'apikey': apiKey});
